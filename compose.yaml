@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+    xmrig:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        container_name: xmrig-miner
+        restart: unless-stopped
+        privileged: true
+        environment:
+          - pool = 
+          - wallet = 
+          - worker_name = 
+        volumes:
+          - "/lib/modules:/lib/modules"
+        dns:
+          - 8.8.8.8
+          - 8.8.4.4
+          - 1.1.1.1
+        working_dir: /xmrig-py/xmrig/
+networks:
+  default:
+    driver: bridge
